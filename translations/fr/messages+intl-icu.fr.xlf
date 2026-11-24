@@ -4309,5 +4309,23 @@
         <target>Sélectionnez au moins un objet à importer</target>
       </segment>
     </unit>
+    <unit id="87PJkP9" name="label.item.copy_name">
+      <segment state="translated">
+        <source>{name} (copy)</source>
+        <target>{name} (copie)</target>
+      </segment>
+    </unit>
+    <unit id="ADf2jXy" name="tooltip.duplicate">
+      <segment state="translated">
+        <source>Duplicate</source>
+        <target>Dupliquer</target>
+      </segment>
+    </unit>
+    <unit id="bNc5P8P" name="message.item_duplicated">
+      <segment state="translated">
+        <source>Item {item} has been duplicated</source>
+        <target>L'objet {item} a été dupliqué</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

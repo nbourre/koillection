@@ -3973,5 +3973,23 @@
         <target>Error</target>
       </segment>
     </unit>
+    <unit id="87PJkP9" name="label.item.copy_name">
+      <segment state="translated">
+        <source>{name} (copy)</source>
+        <target>{name} (copia)</target>
+      </segment>
+    </unit>
+    <unit id="ADf2jXy" name="tooltip.duplicate">
+      <segment state="translated">
+        <source>Duplicate</source>
+        <target>Duplicar</target>
+      </segment>
+    </unit>
+    <unit id="bNc5P8P" name="message.item_duplicated">
+      <segment state="translated">
+        <source>Item {item} has been duplicated</source>
+        <target>El elemento {item} ha sido duplicado</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

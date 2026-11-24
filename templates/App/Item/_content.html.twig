@@ -27,6 +27,12 @@
                     path: path('app_item_delete', {id: item.id}),
                     message: 'message.delete.item'
                 }) }}
+                <form method="post" action="{{ path('app_item_duplicate', {'id': item.id}) }}" class="inline-action-form">
+                    <input type="hidden" name="_token" value="{{ csrf_token('duplicate-item-' ~ item.id) }}">
+                    <button type="submit" class="button" title="{{ 'tooltip.duplicate'|trans }}">
+                        <i class="fa fa-clone fa-fw"></i>
+                    </button>
+                </form>
                 {% if isFeatureEnabled('loans') %}
                     <a href="{{ path('app_item_loan', {'id': item.id}) }}" class="button"
                        title="{{ 'tooltip.loan_item'|trans }}">
