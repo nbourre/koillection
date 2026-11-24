@@ -648,6 +648,18 @@ ul.nav-pills li {
     white-space: nowrap;
 }
 
+.inline-action-form {
+    display: inline-block;
+    margin: 0;
+}
+
+.inline-action-form button.button {
+    background: none;
+    border: none;
+    color: inherit;
+    font-family: inherit;
+}
+
 table .visibility {
     padding-top: 0px;
 }

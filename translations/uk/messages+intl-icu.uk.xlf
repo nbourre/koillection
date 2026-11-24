@@ -127,5 +127,23 @@
         <target>Нічого не знайдено</target>
       </segment>
     </unit>
+    <unit id="87PJkP9" name="label.item.copy_name">
+      <segment state="translated">
+        <source>{name} (copy)</source>
+        <target>{name} (копія)</target>
+      </segment>
+    </unit>
+    <unit id="ADf2jXy" name="tooltip.duplicate">
+      <segment state="translated">
+        <source>Duplicate</source>
+        <target>Дублювати</target>
+      </segment>
+    </unit>
+    <unit id="bNc5P8P" name="message.item_duplicated">
+      <segment state="translated">
+        <source>Item {item} has been duplicated</source>
+        <target>Предмет {item} продубльовано</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

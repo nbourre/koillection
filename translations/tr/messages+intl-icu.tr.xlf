@@ -1027,5 +1027,23 @@
         <target>Ara</target>
       </segment>
     </unit>
+    <unit id="87PJkP9" name="label.item.copy_name">
+      <segment state="translated">
+        <source>{name} (copy)</source>
+        <target>{name} (kopya)</target>
+      </segment>
+    </unit>
+    <unit id="ADf2jXy" name="tooltip.duplicate">
+      <segment state="translated">
+        <source>Duplicate</source>
+        <target>Çoğalt</target>
+      </segment>
+    </unit>
+    <unit id="bNc5P8P" name="message.item_duplicated">
+      <segment state="translated">
+        <source>Item {item} has been duplicated</source>
+        <target>{item} öğesi çoğaltıldı</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

@@ -16,6 +16,7 @@ use App\Repository\ChoiceListRepository;
 use App\Repository\CollectionRepository;
 use App\Repository\ItemRepository;
 use App\Repository\TagRepository;
+use App\Service\ItemDuplicator;
 use App\Service\ItemNameGuesser;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Persistence\ManagerRegistry;
@@ -139,6 +140,27 @@ class ItemController extends AbstractController
             'collection' => $item->getCollection(),
             'choiceLists' => $choiceListRepository->findAll(),
         ]);
+    }
+
+    #[Route(path: '/items/{id}/duplicate', name: 'app_item_duplicate', methods: ['POST'])]
+    public function duplicate(
+        Request $request,
+        #[MapEntity(expr: 'repository.findById(id)')] Item $item,
+        ItemDuplicator $itemDuplicator,
+        TranslatorInterface $translator,
+        ManagerRegistry $managerRegistry
+    ): Response {
+        if (!$this->isCsrfTokenValid('duplicate-item-' . $item->getId(), (string) $request->request->get('_token'))) {
+            throw $this->createAccessDeniedException();
+        }
+
+        $copy = $itemDuplicator->duplicate($item);
+        $managerRegistry->getManager()->persist($copy);
+        $managerRegistry->getManager()->flush();
+
+        $this->addFlash('notice', $translator->trans('message.item_duplicated', ['item' => $item->getName()]));
+
+        return $this->redirectToRoute('app_item_edit', ['id' => $copy->getId()]);
     }
 
     #[Route(path: '/items/{id}/delete', name: 'app_item_delete', methods: ['POST'])]
