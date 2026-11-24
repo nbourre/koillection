@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
- * Builds a copy of an item: same collection, tags, visibility and data.
+ * Builds a copy of an item: same collection, tags, visibility, quantity and data.
  * Uploaded files (main image, image/sign/file/video data) are physically copied
  * so the copy and the original never share a file on disk.
  * Loans and related items are not copied.
@@ -29,7 +29,6 @@ readonly class ItemDuplicator
         $copy = new Item();
         $copy
             ->setName($this->translator->trans('label.item.copy_name', ['name' => $source->getName()]))
-            ->setDescription($source->getDescription())
             ->setQuantity($source->getQuantity())
             ->setCollection($source->getCollection())
             ->setVisibility($source->getVisibility())
