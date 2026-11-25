@@ -217,3 +217,46 @@ jobs:
             bin/console doctrine:database:create
             bin/console doctrine:migration:migrate --no-interaction --allow-no-migration            
             php -d memory_limit=512M ./vendor/bin/paratest --runner=WrapperRunner --passthru-php='-d memory_limit=512M'
+
+  # Fork only: build the production image and push it to ghcr.io/<owner>/koillection
+  # once every check passed on the nibotek branch. It lives here rather than in a
+  # workflow_run workflow because workflow_run only fires for workflows that exist
+  # on the default branch (1.9), which nibotek is not.
+  fork_image:
+    name: Build and push fork image
+    runs-on: ubuntu-latest
+    needs: [ security_checker, doctrine_schema_validator, phpunit_mysql, phpunit_mariadb, phpunit_postgres ]
+    if: github.repository_owner != 'benjaminjonard' && github.event_name == 'push' && github.ref == 'refs/heads/nibotek'
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v7
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v4
+
+      - name: Login to GHCR
+        uses: docker/login-action@v4.8.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Compute image name
+        id: image
+        run: echo "name=ghcr.io/${GITHUB_REPOSITORY_OWNER,,}/koillection" >> "$GITHUB_OUTPUT"
+
+      - name: Build and push
+        uses: docker/build-push-action@v7
+        with:
+          context: .
+          file: Dockerfile
+          push: true
+          platforms: linux/amd64
+          tags: |
+            ${{ steps.image.outputs.name }}:latest
+            ${{ steps.image.outputs.name }}:${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
