@@ -18,6 +18,8 @@ services:
             - '../src/Entity/'
             - '../src/Model/'
             - '../src/Kernel.php'
+            - '../src/Plugin/Dto/'
+            - '../src/Plugin/Event/'
 
     App\Controller\:
         resource: '../src/Controller'
