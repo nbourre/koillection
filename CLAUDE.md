@@ -18,7 +18,7 @@ git switch -c feature/<nom> upstream/1.9
 Une branche destinée à une PR upstream part de `upstream/1.9`, jamais d'une branche du fork qui contient ce fichier.
 
 ## Stack
-- PHP 8.6, Symfony 8.1, Doctrine ORM 3, API Platform 5 (code dans `api/`, pas `src/`)
+- PHP 8.6, Symfony 8.1, Doctrine ORM 3, API Platform 5 (code dans `src/Api/`)
 - Twig, Stimulus, Vite (`assets/vite.config.mjs`), Materialize 2.4, yarn dans `assets/`
 - Docker : image FrankenPHP en mode worker (attention aux états qui fuient entre requêtes)
 - BD : PostgreSQL, MySQL et MariaDB supportés tous les trois
@@ -33,7 +33,7 @@ Une branche destinée à une PR upstream part de `upstream/1.9`, jamais d'une br
 | Vues | `templates/App/<Module>/` (`index`, `show`, `add`, `edit`, `_form`...) |
 | JS | `assets/controllers/<nom>_controller.js` (Stimulus) |
 | Services | `src/Service/`, événements dans `src/EventListener/` |
-| API | `api/` (ressources, sérialiseurs, filtres Doctrine) |
+| API | `src/Api/` (ressources, sérialiseurs, filtres Doctrine) |
 | Tests | `tests/App/`, `tests/Api/`, fabriques Foundry dans `tests/Factory/` |
 
 Migrations : une par moteur, dans `migrations/Postgresql/` ET `migrations/Mysql/` (MySQL et MariaDB partagent la même).
